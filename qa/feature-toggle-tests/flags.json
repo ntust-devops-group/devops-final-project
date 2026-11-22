@@ -1,0 +1,8 @@
+{
+  "quick_submit": {
+    "enabled": false
+  },
+  "csv_export": {
+    "enabled": false
+  }
+}
