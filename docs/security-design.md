@@ -11,6 +11,51 @@ for two feature-toggled functions in the team project.
 
 Feature names will be finalized by the Task 3 owner.
 
+## Security Architecture Diagram
+
+The following diagram illustrates the proposed security
+architecture, trust boundaries, and secret flow.
+
+```mermaid
+flowchart TD
+    U["Users / Browser"]
+    I["OIDC Identity Provider"]
+
+    subgraph SERVER["Application Trust Boundary"]
+        B["Application Backend"]
+        S["Server-side Sessions"]
+        R["RBAC and Feature Flag Checks"]
+        A["Feature A API"]
+        C["Feature B API"]
+        D[("Database")]
+
+        B --> S
+        B --> R
+        R --> A
+        R --> C
+        A --> D
+        C --> D
+    end
+
+    U -->|"HTTPS"| B
+    B <-->|"OIDC authentication"| I
+
+    subgraph CICD["CI/CD Trust Boundary"]
+        G["GitHub Environment Secrets"]
+        W["GitHub Actions Workflow"]
+        G -->|"Secret injection"| W
+    end
+
+    W -->|"Authorized deployment"| B
+```
+
+**Implementation status:** This is a proposed application
+architecture. OIDC, server-side sessions, and RBAC
+middleware are planned, not yet implemented.
+
+**Security principle:** All feature access decisions must
+be enforced by the backend, not only by hiding UI elements.
+
 ## 2. Authentication
 
 Selected method: OpenID Connect (OIDC)
