@@ -144,6 +144,45 @@ observed in the reviewed snapshot.
 A zero-alert result does not prove the absence of
 all vulnerabilities.
 
+### Dependency Risk Assessment
+
+Scan date: November 22, 2026
+
+Scope:
+- GitHub Actions dependencies
+- Dependabot alerts reported by GitHub
+
+Results:
+- Critical vulnerabilities: 0 reported
+- High vulnerabilities: 0 reported
+- Open Dependabot alerts: 0
+
+### Remediation Plan
+
+| Dependency | Finding | Decision | Reason |
+|---|---|---|---|
+| actions/checkout@v4 | New major version available | Upgrade after testing | Maintain supported dependencies and compatibility |
+| Other detected dependencies | No high-risk alerts reported | Monitor | Continue weekly checks and review new alerts |
+
+The actions/checkout update was proposed in PR #7.
+
+A version update recommendation is not necessarily
+evidence of a known security vulnerability.
+
+The proposed upgrade must be validated before merging.
+
+### Limitations
+
+The current repository primarily contains GitHub
+Actions workflows and security documentation.
+
+The absence of Dependabot alerts does not guarantee
+that the application is free from vulnerabilities.
+
+Additional dependencies must be scanned when the
+team integrates the application code.
+
+
 ## 7. Secret Management
 
 Selected storage: GitHub Environment Secrets
