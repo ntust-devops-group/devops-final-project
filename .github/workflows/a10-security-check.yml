@@ -1,0 +1,26 @@
+
+name: A10 Security Baseline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security-check:
+    name: Check Security Configuration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify Dependabot config exists
+        run: |
+          test -f .github/dependabot.yml
+          echo "Dependabot configuration found."
+
+      - name: Security baseline summary
+        run: |
+          echo "A10 security baseline completed."
